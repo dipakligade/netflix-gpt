@@ -2,14 +2,18 @@ import React, { useRef } from 'react'
 import Header from './Header';
 import { useState } from 'react';
 import { checkValidData, checkValidDataForSignUp } from '../utils/validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 
 const Login = () => {
 
     const [isSignIn, setIsSignIn] = useState(true);
-    const [errorMessage, setErrorMessage] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const dispatch = useDispatch();
 
     const name = useRef(null);
     const email = useRef(null);
@@ -34,8 +38,16 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed up 
                     const user = userCredential.user;
-                    // ...
-                    console.log(user)
+                    updateProfile(user, {
+                        displayName: name.current.value, photoURL: "https://media.licdn.com/dms/image/v2/D4D35AQEahsRtdVr5sQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1737810117985?e=1739016000&v=beta&t=ZdzYiMakTzJix_z9_-uwCdqRFcebfswOFIThZ_jDvfk"
+                    }).then(() => {
+                        const { uid, email, displayName, photoURL } = auth.currentUser;
+                        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+
+                    }).catch((error) => {
+                        setErrorMessage(error.message)
+                    });
+
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -47,9 +59,7 @@ const Login = () => {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
                     // Signed in 
-                    const user = userCredential.user;
-                    // ...
-                    console.log(user);
+
                 })
                 .catch((error) => {
                     const errorCode = error.code;
