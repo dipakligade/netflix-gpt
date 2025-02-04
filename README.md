@@ -21,7 +21,18 @@
 - Update the Profile using firebase api
 - BugFix: Sign up user displayName and profile picture update
 - BugFix: if the user is not logged in redirect Browse page to login page and vice-versa
--
+- Unsubscribe to onAuthStateChange callback
+- Add HardCoded Values inside the costants file.
+- Register TMDB API & create app and get access token from TMDB for api key
+- get data from TMDB now playing movies list API
+- create Custome hook for nowPlayintMovies
+- create Movies Slice
+- update the store with movies data
+- paln for the main and secondery container
+- fetch data for Trailer Video
+- update store with trailer videos data
+- Embeded youtube Video and make it auto play and mute
+- use Tailwind classes to make main container looks awesome
 
 ....
 

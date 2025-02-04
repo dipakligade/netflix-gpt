@@ -6,6 +6,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVTAR, BACKGROUND_IMAGE } from '../utils/constants'
+
 
 
 const Login = () => {
@@ -39,7 +41,8 @@ const Login = () => {
                     // Signed up 
                     const user = userCredential.user;
                     updateProfile(user, {
-                        displayName: name.current.value, photoURL: "https://media.licdn.com/dms/image/v2/D4D35AQEahsRtdVr5sQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1737810117985?e=1739016000&v=beta&t=ZdzYiMakTzJix_z9_-uwCdqRFcebfswOFIThZ_jDvfk"
+                        displayName: name.current.value,
+                        photoURL: { USER_AVTAR }
                     }).then(() => {
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
@@ -65,7 +68,7 @@ const Login = () => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMessage(errorCode + " - " + errorMessage);
-                    console.log("hello")
+
                 });
         }
 
@@ -79,7 +82,7 @@ const Login = () => {
         <div  >
             <Header />
             <div className='absolute'>
-                <img src='https://assets.nflxext.com/ffe/siteui/vlv3/7a8c0067-a424-4e04-85f8-9e25a49a86ed/web/NL-en-20250120-TRIFECTA-perspective_7d8c4c6c-0203-456f-b471-34507cf679f4_large.jpg'
+                <img src={BACKGROUND_IMAGE}
                     alt='backgroundImg'
                 />
             </div>
