@@ -9,6 +9,9 @@ export const API_OPTIONS = {
     headers: {
         accept: 'application/json',
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWRhM2JhY2MyNjhhMWMzMTVmNDg4NTBjMjA4NzIzMyIsIm5iZiI6MTczODU0Mjg5OS44OTc5OTk4LCJzdWIiOiI2N2EwMGYzM2FjNWE3OTUxYjljYjdmY2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.RiNMOzEKY1TX0c6jSKlSEvo4fsllZMAPq6lSsOrq72I'
+
     }
 };
+
+export const CDN_IMAGE_URL = "https://image.tmdb.org/t/p/w200";
 
