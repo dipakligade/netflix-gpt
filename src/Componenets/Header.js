@@ -42,7 +42,7 @@ const Header = () => {
             />
             {user && <div className='flex p-2'>
                 <img
-                    className='w-20'
+                    className='w-12 h-12 mt-2 mr-1'
                     alt='userIcon'
                     src={user?.photoURL}
                 />
