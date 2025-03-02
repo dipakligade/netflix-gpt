@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTrendingMovies } from "../utils/movieSlice";
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 
 const useTrendingMovies = () => {
+
+    const trendingMovies = useSelector(store => store.movies.trendingMovies);
 
     const dispatch = useDispatch();
 
@@ -20,7 +22,7 @@ const useTrendingMovies = () => {
 
 
     useEffect(() => {
-        getTrendingMovies();
+        (trendingMovies.length === 0) && getTrendingMovies();
     }, [])
 
 }
