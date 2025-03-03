@@ -50,6 +50,7 @@
 - Memoization
 - Added .env file
 - Adding .env file to gitignore
+- make this application Responsve
   ....
 
 # features
